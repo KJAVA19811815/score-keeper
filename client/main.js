@@ -9,57 +9,45 @@ import AddPlayer from "../imports/ui/AddPlayer";
 
 const renderPlayers = playersList => {
   return playersList.map(function(player) {
-    return (
-      <p key={player._id}>
-        {player.name} has {player.score} points
-        <button
-          onClick={() => {
-            Players.update(
-              { _id: player._id },
-              {
-                $inc: { score: 1 }
-              }
-            );
-          }}
-        >
-          +
-        </button>
-        <button
-          onClick={() => {
-            Players.update(
-              { _id: player._id },
-              {
-                $inc: { score: -1 }
-              }
-            );
-          }}
-        >
-          -
-        </button>
-        <button
-          onClick={() => {
-            Players.remove({
-              _id: player._id
-            });
-          }}
-        >
-          X
-        </button>
-      </p>
-    );
+    // return (
+    //   <p key={player._id}>
+    //     {player.name} has {player.score} points
+    //     <button
+    //       onClick={() => {
+    //         Players.update(
+    //           { _id: player._id },
+    //           {
+    //             $inc: { score: 1 }
+    //           }
+    //         );
+    //       }}
+    //     >
+    //       +
+    //     </button>
+    //     <button
+    //       onClick={() => {
+    //         Players.update(
+    //           { _id: player._id },
+    //           {
+    //             $inc: { score: -1 }
+    //           }
+    //         );
+    //       }}
+    //     >
+    //       -
+    //     </button>
+    //     <button
+    //       onClick={() => {
+    //         Players.remove({
+    //           _id: player._id
+    //         });
+    //       }}
+    //     >
+    //       X
+    //     </button>
+    //   </p>
+    // );
   });
-};
-
-const handleSubmit = e => {
-  let playerName = e.target.playerName.value;
-  e.preventDefault();
-  if (playerName) {
-    e.target.playerName.value = "";
-    Players.insert({
-      name: playerName,
-      score: 0
-    });
-  }
 };
 
 Meteor.startup(() => {
@@ -68,13 +56,9 @@ Meteor.startup(() => {
 
     let jsx = (
       <div>
-        <TitleBar />
+        <TitleBar title="SCORE-KEEP" />
         {renderPlayers(players)}
         <AddPlayer />
-        <form onSubmit={handleSubmit}>
-          <input type="text" name="playerName" placeholder="name" />
-          <button>Add player</button>
-        </form>
       </div>
     );
     ReactDOM.render(jsx, document.getElementById("app"));

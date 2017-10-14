@@ -5,7 +5,7 @@ export default class TitleBar extends Component {
   render() {
     return (
       <div>
-        <h1>SCORE-KEEP</h1>
+        <h1>{this.props.title}</h1>
       </div>
     );
   }
