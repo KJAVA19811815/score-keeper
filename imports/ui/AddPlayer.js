@@ -20,7 +20,7 @@ export default class AddPlayer extends Component {
       <div className="item">
         <form onSubmit={this.handleSubmit}>
           <input type="text" name="playerName" placeholder="name" />
-          <button>Add player</button>
+          <button className="button">Add player</button>
         </form>
         <p>ADD player.</p>
       </div>
