@@ -6,49 +6,8 @@ import { Tracker } from "meteor/tracker";
 import { Players } from "../imports/api/players";
 import TitleBar from "../imports/ui/TitleBar";
 import AddPlayer from "../imports/ui/AddPlayer";
-
-const renderPlayers = playersList => {
-  return playersList.map(function(player) {
-    // return (
-    //   <p key={player._id}>
-    //     {player.name} has {player.score} points
-    //     <button
-    //       onClick={() => {
-    //         Players.update(
-    //           { _id: player._id },
-    //           {
-    //             $inc: { score: 1 }
-    //           }
-    //         );
-    //       }}
-    //     >
-    //       +
-    //     </button>
-    //     <button
-    //       onClick={() => {
-    //         Players.update(
-    //           { _id: player._id },
-    //           {
-    //             $inc: { score: -1 }
-    //           }
-    //         );
-    //       }}
-    //     >
-    //       -
-    //     </button>
-    //     <button
-    //       onClick={() => {
-    //         Players.remove({
-    //           _id: player._id
-    //         });
-    //       }}
-    //     >
-    //       X
-    //     </button>
-    //   </p>
-    // );
-  });
-};
+import Player from "../imports/ui/Player";
+import PlayerList from "../imports/ui/PlayerList";
 
 Meteor.startup(() => {
   Tracker.autorun(() => {
@@ -57,7 +16,7 @@ Meteor.startup(() => {
     let jsx = (
       <div>
         <TitleBar title="SCORE-KEEP" />
-        {renderPlayers(players)}
+        <PlayerList players={players} />
         <AddPlayer />
       </div>
     );
